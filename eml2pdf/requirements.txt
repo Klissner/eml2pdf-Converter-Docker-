@@ -1,0 +1,19 @@
+# ************************************************************************************
+# (c) 2025 by Michael Klissner
+#
+# Homepage: www.klissner.uk                              Homepage: www.ksc-llp.uk
+# Contact: https://www.klissner.uk/en/contact-me/        Kontakt: https://www.klissner.uk/de/kontakt-aufnehmen/
+# 
+# Donations and support:                                 Spenden und Unterstützung: 
+# PayPal: https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
+#
+# Bank, Bitcoin and Lightning:                           Bank, Bitcoin und Lightning:  
+# https://www.ksc-llp.uk/donateyoutube                   https://www.ksc-llp.uk/donateyoutube
+# ************************************************************************************
+
+weasyprint==62.3
+Pillow==10.4.0
+PyPDF2==3.0.1
+python-dateutil==2.9.0.post0
+pytz==2024.1
+reportlab==4.2.2

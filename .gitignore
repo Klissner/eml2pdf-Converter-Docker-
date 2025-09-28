@@ -1,0 +1,3 @@
+config.json
+eml2pdf/*.pyc
+eml2pdf/__pycache__/
