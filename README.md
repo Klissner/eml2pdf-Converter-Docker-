@@ -1,7 +1,10 @@
 # 📑 eml2pdf Converter – English Document
 
 ## Overview
-The **eml2pdf Converter** is a tool optimized for **Paperless workflows**, converting **EML files (including attachments)** into a single PDF document.  
+The **eml2pdf Converter** is a tool optimized for **Paperless workflows**, converting **EML files (including attachments)** into a single PDF document.
+
+## License
+With License – see LICENSE file.
 
 Key Features:
 - Focus on **GoBD compliance** (principles for proper record-keeping and retention).  
@@ -174,6 +177,9 @@ License information will be added later.
 
 ## Überblick
 Der **eml2pdf Converter** ist ein für **Paperless-Workflows** optimiertes Tool, das **EML-Dateien (inklusive Anlagen)** in ein einziges PDF-Dokument umwandelt.  
+
+## Lizenz
+Mit License – siehe LICENSE-Datei.
 
 Hauptmerkmale:
 - Fokus auf **GoBD-Konformität** (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung).
