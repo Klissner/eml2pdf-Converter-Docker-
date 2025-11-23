@@ -1,61 +1,55 @@
-# 📑 eml2pdf Converter – English Document
+# eml2pdf Converter – EML → PDF | 100% Paperless-ngx compatible
+**Version 1.01 – 22 November 2025**  
+© Michael Klissner – https://www.klissner.uk
 
-## Overview
-The **eml2pdf Converter** is a tool optimized for **Paperless workflows**, converting **EML files (including attachments)** into a single PDF document.
+Converts EML files (including all attachments) into a single, searchable, GoBD-compliant PDF – made for Paperless-ngx.
 
-## License
-With License – see LICENSE file.
+## Official Images (GitHub Container Registry)
 
-Key Features:
-- Focus on **GoBD compliance** (principles for proper record-keeping and retention).  
-- **Seamless integration** with [Paperless](https://github.com/paperless-ngx/paperless-ngx).  
-- Can also be used **standalone** to convert EML files.  
+| Architecture           | Version 1.01 (stable)               | Latest (rolling)                   | Recommended for                               |
+|------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Servers, desktops, NAS (Synology, QNAP, TrueNAS) |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
 
----
+Important: Always use the full tag with architecture suffix!
 
-## Features
-- **Input**: Processes EML files including attachments from an input directory.  
-- **Conversion**: Converts via **LibreOffice** into a PDF (attachments as separate pages).  
-- **Output**: Stored in the output directory (`consume`).  
-- **GoBD compliance**: Metadata is preserved, conversion is traceable.  
+## Quick Start (Docker Compose)
 
----
+```yaml
+version: '3.8'
+services:
+  eml2pdf:
+    image: ghcr.io/klissner/eml2pdf:1.01-x86      # x86 systems
+    # image: ghcr.io/klissner/eml2pdf:1.01-arm    # Raspberry Pi / Apple Silicon
+    container_name: eml2pdf
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+      - LOGLEVEL=INFO
+    volumes:
+      - ./eml-import:/input
+      - ./consume:/consume
+      - ./eml-import/archiv:/eml-import/archiv
+      - ./eml-import/error:/eml-import/error
+      - ./config.json:/config.json
 
-## Performance
-- **Scalability**: Handles multiple EML files simultaneously (depending on system resources).  
-- **Speed**: Conversion of a typical EML file (~1 MB) takes ~5–10 seconds.  
-- **Resources**: Built with **Python 3.11** and minimal dependencies (LibreOffice, Python packages).  
+Start:bash
 
----
+docker-compose up -d
 
-## Installation
+Local folder structure
 
-### Requirements
-- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)  
-- Git to clone the repository  
-- Access to the **GitHub Container Registry** (PAT required)  
+paperless/
+├── docker-compose.yml
+├── config.json
+├── eml-import/           ← drop EML files here
+│   ├── archiv/           ← archived EMLs
+│   └── error/            ← failed files + logs
+├── consume/              ← converted PDFs appear here
+└── eml2pdf/              ← contains Dockerfile, main.py, requirements.txt
 
-### Clone repository
-```bash
-git clone https://github.com/Klissner/eml2pdf-Converter-Docker-.git
-cd eml2pdf-Converter-Docker-
-```
+Configuration (config.json)json
 
-### Pull image
-```bash
-docker pull ghcr.io/klissner/eml2pdf:latest
-```
-
-- Adjust configuration (see **Configuration** section)  
-- Start the container (see **Docker Compose** section)  
-
----
-
-## 🔧 Configuration (`config.json`)
-
-The `config.json` file is located next to `docker-compose.yml` and controls the converter behavior.
-
-```json
 {
   "separator_text": "Attachment {num}: {name}",
   "poll_interval_seconds": 300,
@@ -64,173 +58,71 @@ The `config.json` file is located next to `docker-compose.yml` and controls the 
   "max_logfile_size": 1048576,
   "max_logfile_backups": 2
 }
-```
 
-### Parameter description
-- **separator_text** → Text for attachment separator (e.g., “Attachment 1: file.pdf”).  
-- **poll_interval_seconds** → Interval in seconds (300 = every 5 minutes).  
-- **separator_page** → Inserts a separator page before attachments (`on` / `off`).  
-- **archive_retention_days** → Retention period for archived files in days (default: 30).  
-- **max_logfile_size** → Maximum log file size in bytes (1 MB = `1048576`).  
-- **max_logfile_backups** → Number of log backups (default: 2).  
+What’s new in Version 1.01?Full ARM64 support (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
+Clear architecture separation (-x86 / -arm)  
+Proper semantic versioning + stable tags  
+Clean, multi-arch Dockerfile  
+Completely rewritten, honest documentation
 
-👉 **Note**: Adjust `config.json` as needed and add it to `.gitignore` to prevent sensitive settings from being committed.  
+eml2pdf now truly runs everywhere – no compromises.Donations & SupportThank you for your support!  PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeContactMichael Klissner  
+https://www.klissner.uk  
+Mail: umschalter-excel-3e@icloud.com
 
----
 
-## 🐳 Docker Compose (`docker-compose.yml`)
+# eml2pdf Converter – EML → PDF | 100% Paperless-ngx kompatibel
+**Version 1.01 – 22. November 2025**  
+(c) Michael Klissner – https://www.klissner.uk
+
+Konvertiert EML-Dateien (inkl. aller Anhänge) GoBD-konform in ein einziges, durchsuchbares PDF – perfekt für Paperless-ngx.
+
+## Offizielle Images (GitHub Container Registry)
+
+| Architektur            | Version 1.01 (stabil)               | Aktuell (rolling)                  | Empfohlen für                                 |
+|------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Server, Desktop, NAS (Synology, QNAP, TrueNAS) |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+
+**Wichtig**: Immer den vollen Tag mit Architektur verwenden!
+
+## Schnellstart (Docker Compose)
 
 ```yaml
 version: '3.8'
 services:
   eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:latest
-    build:
-      context: ./eml2pdf
-      dockerfile: Dockerfile
+    image: ghcr.io/klissner/eml2pdf:1.01-x86      # ← x86-Systeme
+    # image: ghcr.io/klissner/eml2pdf:1.01-arm    # ← Raspberry Pi / Apple Silicon
+    container_name: eml2pdf
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+      - LOGLEVEL=INFO
     volumes:
       - ./eml-import:/input
       - ./consume:/consume
       - ./eml-import/archiv:/eml-import/archiv
       - ./eml-import/error:/eml-import/error
       - ./config.json:/config.json
-    environment:
-      - TZ=Asia/Bangkok
-      - LOGLEVEL=INFO
-    restart: unless-stopped
-```
 
-### Parameter explanation
-- **image** → Official container image (GitHub Container Registry).  
-- **build** → Builds the image locally from the `./eml2pdf/` directory.  
-- **volumes** → Maps local directories to container paths:  
-  - `eml-import/` → Input for `.eml` files  
-  - `consume/` → Output folder for generated PDFs  
-  - `eml-import/archiv/` → Archived `.eml` files  
-  - `eml-import/error/` → Error logs  
-  - `config.json` → central configuration  
-- **environment** → Container environment variables  
-  - `TZ=Asia/Bangkok` → Time zone  
-  - `LOGLEVEL=INFO` → Log level  
-- **restart** → Container automatically restarts on failure or system reboot.  
+Starten:bash
 
----
-
-## ▶️ Start & Stop
-
-```bash
-# Start container
 docker-compose up -d
 
-# Stop container
-docker-compose down
-```
+Verzeichnisstruktur (lokal)
 
----
+paperless/
+├── docker-compose.yml
+├── config.json
+├── eml-import/           ← EML-Dateien hier reinlegen
+│   ├── archiv/           ← archivierte EMLs
+│   └── error/            ← fehlerhafte Dateien + Logs
+├── consume/              ← fertige PDFs kommen hier raus
+└── eml2pdf/              ← enthält Dockerfile, main.py, requirements.txt
 
-## 📂 Directory structure
+Konfiguration (config.json)json
 
-```
-/mnt/d/Docker Server/paperless/
-│── docker-compose.yml
-│── config.json
-│── eml-import/            # Input (place EML files here)
-│   ├── archiv/            # Archived EMLs
-│   ├── error/             # Errors & logs
-│── consume/               # Output directory for PDFs
-│── eml2pdf/               # contains Dockerfile, main.py, requirements.txt
-```
-
----
-
-## 📬 Usage
-
-1. Place **EML files** in `eml-import/`.  
-2. **Start the container** with:  
-   ```bash
-   docker-compose up -d
-   ```  
-3. Converted **PDF files** appear in `consume/`.  
-4. **Logs** can be found in `eml-import/error/` (e.g., `logfile.log`).  
-
----
-
-## 📜 License
-
-License information will be added later.  
-
----
-
-## 📞 Contact
-
-- **Author:** Michael Klissner  
-- **E-Mail:** [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)  
-- **Homepage:** [https://www.klissner.uk](https://www.klissner.uk)  
-- **Support:** [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)  
-
----
-
-
-
-
-# 📑 eml2pdf Converter – Deutsches Dokument
-
-## Überblick
-Der **eml2pdf Converter** ist ein für **Paperless-Workflows** optimiertes Tool, das **EML-Dateien (inklusive Anlagen)** in ein einziges PDF-Dokument umwandelt.  
-
-## Lizenz
-Mit License – siehe LICENSE-Datei.
-
-Hauptmerkmale:
-- Fokus auf **GoBD-Konformität** (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung).
-- **Nahtlose Integration** in [Paperless](https://github.com/paperless-ngx/paperless-ngx).
-- Auch **eigenständig nutzbar** zur Konvertierung von EML-Dateien.
-
----
-
-## Funktionen
-- **Eingabe**: Verarbeitung von EML-Dateien inkl. aller Anlagen aus einem Eingabeverzeichnis.  
-- **Umwandlung**: Konvertierung per **LibreOffice** in ein PDF (Anlagen als separate Seiten).  
-- **Ausgabe**: Speicherung im Ausgabeverzeichnis (`consume`).  
-- **GoBD-Konformität**: Metadaten bleiben erhalten, Konvertierung ist nachvollziehbar.  
-
----
-
-## Leistung
-- **Skalierbarkeit**: Verarbeitung mehrerer EML-Dateien gleichzeitig (abhängig von Systemressourcen).  
-- **Performance**: Konvertierung einer typischen EML-Datei (ca. 1 MB) dauert ~5–10 Sekunden.  
-- **Ressourcen**: Entwickelt mit **Python 3.11** und minimalen Abhängigkeiten (LibreOffice, Python-Pakete).  
-
----
-
-## Installation
-
-### Voraussetzungen
-- [Docker](https://docs.docker.com/get-docker/) und [Docker Compose](https://docs.docker.com/compose/install/)  
-- Git zum Klonen des Repositories  
-- Zugriff auf die **GitHub Container Registry** (PAT erforderlich)  
-
-### Repository klonen
-```bash
-git clone https://github.com/Klissner/eml2pdf-Converter-Docker-.git
-cd eml2pdf-Converter-Docker-
-```
-
-### Image ziehen
-```bash
-docker pull ghcr.io/klissner/eml2pdf:latest
-```
-
-- Konfiguration anpassen (siehe Abschnitt **Konfiguration**)  
-- Container starten (siehe Abschnitt **Docker Compose**)  
-
----
-
-## 🔧 Konfiguration (`config.json`)
-
-Die Datei `config.json` liegt neben der `docker-compose.yml` und steuert das Verhalten des Converters.
-
-```json
 {
   "separator_text": "Anlage {num}: {name}",
   "poll_interval_seconds": 300,
@@ -239,108 +131,15 @@ Die Datei `config.json` liegt neben der `docker-compose.yml` und steuert das Ver
   "max_logfile_size": 1048576,
   "max_logfile_backups": 2
 }
-```
 
-### Parameterbeschreibung
-- **separator_text** → Text für Anlagentrenner (z. B. „Anlage 1: datei.pdf“).  
-- **poll_interval_seconds** → Prüfintervall in Sekunden (300 = alle 5 Minuten).  
-- **separator_page** → Fügt eine Trennseite vor Anhängen ein (`on` / `off`).  
-- **archive_retention_days** → Aufbewahrungszeit für Archivdateien in Tagen (Standard: 30).  
-- **max_logfile_size** → Max. Größe der Logdatei in Bytes (1 MB = `1048576`).  
-- **max_logfile_backups** → Anzahl der Log-Backups (Standard: 2).  
+Was ist neu in Version 1.01?Vollständige ARM64-Unterstützung (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
+Klare Trennung der Architekturen (-x86 / -arm)  
+Semantische Versionierung + stabile Tags  
+Multi-arch-fähiges, sauberes Dockerfile  
+Komplett überarbeitete und ehrliche Dokumentation
 
-👉 **Hinweis**: Passe `config.json` an deine Bedürfnisse an und füge sie in `.gitignore` ein, damit keine sensiblen Daten ins Repo gelangen.
+Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse.Spenden & UnterstützungVielen Dank für eure Unterstützung!  PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeKontaktMichael Klissner  
+https://www.klissner.uk  
+Mail: umschalter-excel-3e@icloud.com
 
----
-
-## 🐳 Docker Compose (`docker-compose.yml`)
-
-```yaml
-version: '3.8'
-services:
-  eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:latest
-    build:
-      context: ./eml2pdf
-      dockerfile: Dockerfile
-    volumes:
-      - ./eml-import:/input
-      - ./consume:/consume
-      - ./eml-import/archiv:/eml-import/archiv
-      - ./eml-import/error:/eml-import/error
-      - ./config.json:/config.json
-    environment:
-      - TZ=Asia/Bangkok
-      - LOGLEVEL=INFO
-    restart: unless-stopped
-```
-
-### Erklärung der Parameter
-- **image** → Offizielles Container-Image (GitHub Container Registry).  
-- **build** → Baut das Image lokal aus dem Verzeichnis `./eml2pdf/`.  
-- **volumes** → Verknüpft lokale Verzeichnisse mit Containerpfaden:  
-  - `eml-import/` → Eingang für `.eml`-Dateien  
-  - `consume/` → Ausgabeordner für fertige PDFs  
-  - `eml-import/archiv/` → Archivierte `.eml`-Dateien  
-  - `eml-import/error/` → Fehler-Logs  
-  - `config.json` → zentrale Konfiguration  
-- **environment** → Container-Umgebungsvariablen  
-  - `TZ=Asia/Bangkok` → Zeitzone  
-  - `LOGLEVEL=INFO` → Log-Level  
-- **restart** → Container startet bei Fehlern oder Neustart automatisch neu.  
-
----
-
-## ▶️ Start & Stop
-
-```bash
-# Container starten
-docker-compose up -d
-
-# Container stoppen
-docker-compose down
-```
-
----
-
-## 📂 Verzeichnisstruktur
-
-```
-/mnt/d/Docker Server/paperless/
-│── docker-compose.yml
-│── config.json
-│── eml-import/            # Eingang (EML-Dateien ablegen)
-│   ├── archiv/            # Archivierte EMLs
-│   ├── error/             # Fehler & Logs
-│── consume/               # Ausgabeverzeichnis für PDFs
-│── eml2pdf/               # enthält Dockerfile, main.py, requirements.txt
-```
-
----
-
-## 📬 Nutzung
-
-1. **EML-Dateien** in `eml-import/` ablegen.  
-2. **Container starten** mit:  
-   ```bash
-   docker-compose up -d
-   ```  
-3. Konvertierte **PDF-Dateien** erscheinen in `consume/`.  
-4. **Logs** findest du in `eml-import/error/` (z. B. `logfile.log`).  
-
----
-
-## 📜 Lizenz
-
-Lizenzinformationen werden später ergänzt.  
-
----
-
-## 📞 Kontakt
-
-- **Autor:** Michael Klissner  
-- **E-Mail:** [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)  
-- **Homepage:** [https://www.klissner.uk](https://www.klissner.uk)  
-- **Unterstützen:** [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)  
-
----
