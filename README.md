@@ -65,8 +65,10 @@ Proper semantic versioning + stable tags
 Clean, multi-arch Dockerfile  
 Completely rewritten, honest documentation
 
-eml2pdf now truly runs everywhere – no compromises.Donations & SupportThank you for your support!  PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeContactMichael Klissner  
+eml2pdf now truly runs everywhere – no compromises. Donations & SupportThank you for your support
+PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutube
+Contact: Michael Klissner  
 https://www.klissner.uk  
 Mail: umschalter-excel-3e@icloud.com
 
@@ -138,8 +140,10 @@ Semantische Versionierung + stabile Tags
 Multi-arch-fähiges, sauberes Dockerfile  
 Komplett überarbeitete und ehrliche Dokumentation
 
-Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse.Spenden & UnterstützungVielen Dank für eure Unterstützung!  PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeKontaktMichael Klissner  
+Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse. Spenden & UnterstützungVielen Dank für eure Unterstützung!
+PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutube
+Kontakt: Michael Klissner  
 https://www.klissner.uk  
 Mail: umschalter-excel-3e@icloud.com
 
