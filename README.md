@@ -53,7 +53,7 @@ services:
       - LOGLEVEL=INFO
     volumes:
       - ./eml-import:/input
-      - ./consume:/consume
+      - ./consume:/usr/src/paperless/consume
       - ./eml-import/archiv:/eml-import/archiv
       - ./eml-import/error:/eml-import/error
       - ./config.json:/config.json
@@ -98,8 +98,7 @@ Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeContactMichae
 https://www.klissner.uk  
 Mail: umschalter-excel-3e@icloud.com
 
-
-
+------------------------------------------------------------------------------------------
 
 # eml2pdf Converter – EML → PDF | 100% Paperless-ngx kompatibel
 **Version 1.02 – 25. November 2025**  
@@ -156,7 +155,7 @@ services:
       - LOGLEVEL=INFO
     volumes:
       - ./eml-import:/input
-      - ./consume:/consume
+      - ./consume:/usr/src/paperless/consume
       - ./eml-import/archiv:/eml-import/archiv
       - ./eml-import/error:/eml-import/error
       - ./config.json:/config.json
