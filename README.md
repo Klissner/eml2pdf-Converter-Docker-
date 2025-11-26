@@ -1,15 +1,40 @@
 # eml2pdf Converter – EML → PDF | 100% Paperless-ngx compatible
-**Version 1.01 – 22 November 2025**  
+**Version 1.02 – 25 November 2025**  
 © Michael Klissner – https://www.klissner.uk
 
 Converts EML files (including all attachments) into a single, searchable, GoBD-compliant PDF – made for Paperless-ngx.
+
+✅ Directly supported formats:
+
+📄 Documents (via LibreOffice):
+.doc, .docx (Word)
+.xls, .xlsx (Excel)
+.ppt, .pptx (PowerPoint)
+.odt (OpenDocument Text)
+.ods (OpenDocument Spreadsheet)
+.odp (OpenDocument Presentation)
+.rtf (Rich Text Format)
+.pages (Apple Pages)
+.numbers (Apple Numbers)
+
+🖼️ Images (via PIL/Pillow):
+.png
+.jpg, .jpeg
+.gif
+.bmp
+.tiff
+.webp
+
+📋 Already PDF:
+.pdf (will be transferred directly)
+
 
 ## Official Images (GitHub Container Registry)
 
 | Architecture           | Version 1.01 (stable)               | Latest (rolling)                   | Recommended for                               |
 |------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
-| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Servers, desktops, NAS (Synology, QNAP, TrueNAS) |
-| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Servers, desktops, NAS (Synology, QNAP, TrueNAS) |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
 
 Important: Always use the full tag with architecture suffix!
 
@@ -19,8 +44,8 @@ Important: Always use the full tag with architecture suffix!
 version: '3.8'
 services:
   eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:1.01-x86      # x86 systems
-    # image: ghcr.io/klissner/eml2pdf:1.01-arm    # Raspberry Pi / Apple Silicon
+    image: ghcr.io/klissner/eml2pdf:1.02-x86      # x86 systems
+    # image: ghcr.io/klissner/eml2pdf:1.02-arm    # Raspberry Pi / Apple Silicon
     container_name: eml2pdf
     restart: unless-stopped
     environment:
@@ -59,32 +84,60 @@ Configuration (config.json)json
   "max_logfile_backups": 2
 }
 
-What’s new in Version 1.01?Full ARM64 support (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
+What’s new in Version 1.02?
+Full ARM64 support (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
 Clear architecture separation (-x86 / -arm)  
 Proper semantic versioning + stable tags  
 Clean, multi-arch Dockerfile  
-Completely rewritten, honest documentation
 
-eml2pdf now truly runs everywhere – no compromises. Donations & SupportThank you for your support
+
+eml2pdf now truly runs everywhere – no compromises.
+Donations & Support: Thank you for your support!  
 PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutube
-Contact: Michael Klissner  
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeContactMichael Klissner  
 https://www.klissner.uk  
 Mail: umschalter-excel-3e@icloud.com
 
 
+
+
 # eml2pdf Converter – EML → PDF | 100% Paperless-ngx kompatibel
-**Version 1.01 – 22. November 2025**  
+**Version 1.02 – 25. November 2025**  
 (c) Michael Klissner – https://www.klissner.uk
 
-Konvertiert EML-Dateien (inkl. aller Anhänge) GoBD-konform in ein einziges, durchsuchbares PDF – perfekt für Paperless-ngx.
+Konvertiert EML-Dateien (inkl. Anhänge) GoBD-konform in ein einziges, durchsuchbares PDF – perfekt für Paperless-ngx.
+
+✅ Direkt unterstützte Formate:
+
+📄 Dokumente (via LibreOffice):
+.doc, .docx (Word)
+.xls, .xlsx (Excel)
+.ppt, .pptx (PowerPoint)
+.odt (OpenDocument Text)
+.ods (OpenDocument Spreadsheet)
+.odp (OpenDocument Presentation)
+.rtf (Rich Text Format)
+.pages (Apple Pages)
+.numbers (Apple Numbers)
+
+🖼️ Bilder (via PIL/Pillow):
+.png
+.jpg, .jpeg
+.gif
+.bmp
+.tiff
+.webp
+
+📋 Bereits PDF:
+.pdf (wird direkt übernommen)
+
 
 ## Offizielle Images (GitHub Container Registry)
 
 | Architektur            | Version 1.01 (stabil)               | Aktuell (rolling)                  | Empfohlen für                                 |
 |------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
-| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Server, Desktop, NAS (Synology, QNAP, TrueNAS) |
-| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Server, Desktop, NAS (Synology, QNAP, TrueNAS) |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
 
 **Wichtig**: Immer den vollen Tag mit Architektur verwenden!
 
@@ -94,8 +147,8 @@ Konvertiert EML-Dateien (inkl. aller Anhänge) GoBD-konform in ein einziges, dur
 version: '3.8'
 services:
   eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:1.01-x86      # ← x86-Systeme
-    # image: ghcr.io/klissner/eml2pdf:1.01-arm    # ← Raspberry Pi / Apple Silicon
+    image: ghcr.io/klissner/eml2pdf:1.02-x86      # ← x86-Systeme
+    # image: ghcr.io/klissner/eml2pdf:1.02-arm    # ← Raspberry Pi / Apple Silicon
     container_name: eml2pdf
     restart: unless-stopped
     environment:
@@ -134,16 +187,15 @@ Konfiguration (config.json)json
   "max_logfile_backups": 2
 }
 
-Was ist neu in Version 1.01?Vollständige ARM64-Unterstützung (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
+Was ist neu in Version 1.02?
+Vollständige ARM64-Unterstützung (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
 Klare Trennung der Architekturen (-x86 / -arm)  
 Semantische Versionierung + stabile Tags  
 Multi-arch-fähiges, sauberes Dockerfile  
-Komplett überarbeitete und ehrliche Dokumentation
 
-Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse. Spenden & UnterstützungVielen Dank für eure Unterstützung!
+Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse. Spenden & Unterstützung. Vielen Dank für eure Unterstützung!  
 PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutube
-Kontakt: Michael Klissner  
+Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeKontaktMichael Klissner  
 https://www.klissner.uk  
 Mail: umschalter-excel-3e@icloud.com
 
