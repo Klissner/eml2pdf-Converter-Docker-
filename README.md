@@ -78,6 +78,17 @@ Der Fokus liegt auf:
 
 ---
 
+## Offizielle Images (GitHub Container Registry)
+
+| Architektur            | Version 1.01 (stabil)               | Aktuell (rolling)                      | Empfohlen für                                       |
+|------------------------|-------------------------------------|----------------------------------------|-----------------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86`  | Server, Desktop, NAS (Synology, QNAP, TrueNAS)      |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+
+**Wichtig**: Immer den vollen Tag mit Architektur verwenden!
+
+---
+
 ### Konfiguration
 
 Optional über `/config.json`:
@@ -209,6 +220,17 @@ Designed for:
 /app/archiv   → Archived emails (year / month)
 /app/error    → Failed emails + logfile
 ```
+
+---
+
+## Official images (GitHub Container Registry)
+
+| Architecture           | Version 1.01 (stabil)               | Current (rolling)                      | Recommended for.                                    |
+|------------------------|-------------------------------------|----------------------------------------|-----------------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86`  | Server, Desktop, NAS (Synology, QNAP, TrueNAS)      |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+
+**Important**: Always use the full day for architecture!
 
 ---
 
