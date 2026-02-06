@@ -87,7 +87,9 @@ Optional über `/config.json`:
   "separator_text": "Anlage {num}: {name}",
   "poll_interval_seconds": 300,
   "separator_page": "on",
-  "archive_retention_days": 0
+  "archive_retention_days": 730,
+  "max_logfile_size": 1048576,
+  "max_logfile_backups": 3,
 }
 ```
 
@@ -114,10 +116,17 @@ Unterstützt:
 © 2025 - 2026 KSC LLP / Michael Klissner
 [https://www.klissner.uk](https://www.klissner.uk)
 
-Spenden & Support:
 
-* PayPal
-* Bitcoin / Lightning
+## Spenden & Unterstützung
+
+Vielen Dank für eure Unterstützung!
+
+* **PayPal** → [https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW](https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW)
+* **Bitcoin / Lightning / Bank** → [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)
+
+**Kontakt:** Michael Klissner
+Web: [https://www.klissner.uk](https://www.klissner.uk)
+Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
 
 ---
 
@@ -209,10 +218,12 @@ Optional via `/config.json`:
 
 ```json
 {
-  "separator_text": "Attachment {num}: {name}",
+  "separator_text": "Anlage {num}: {name}",
   "poll_interval_seconds": 300,
   "separator_page": "on",
-  "archive_retention_days": 0
+  "archive_retention_days": 730,
+  "max_logfile_size": 1048576,
+  "max_logfile_backups": 3,
 }
 ```
 
@@ -239,18 +250,8 @@ Supported platforms:
 © 2025 - 2026 KSC LLP / Michael Klissner
 [https://www.klissner.uk](https://www.klissner.uk)
 
-Donations & support:
 
-* PayPal
-* Bitcoin / Lightning
-
----
-
----
-
----
-
-## 🇬🇧 Donations & Support
+## Donations & Support
 
 Thank you very much for your support!
 
@@ -261,15 +262,4 @@ Thank you very much for your support!
 Web: [https://www.klissner.uk](https://www.klissner.uk)
 Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
 
----
 
-## 🇩🇪 Spenden & Unterstützung
-
-Vielen Dank für eure Unterstützung!
-
-* **PayPal** → [https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW](https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW)
-* **Bitcoin / Lightning / Bank** → [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)
-
-**Kontakt:** Michael Klissner
-Web: [https://www.klissner.uk](https://www.klissner.uk)
-Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
