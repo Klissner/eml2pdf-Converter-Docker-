@@ -1,200 +1,275 @@
-# eml2pdf Converter – EML → PDF | 100% Paperless-ngx compatible
-**Version 1.02 – 25 November 2025**  
-© Michael Klissner – https://www.klissner.uk
+# EML2PDF Converter
 
-Converts EML files (including all attachments) into a single, searchable, GoBD-compliant PDF – made for Paperless-ngx.
+## 🇩🇪 Deutsch
 
-✅ Directly supported formats:
+### Übersicht
 
-📄 Documents (via LibreOffice):
-.doc, .docx (Word)
-.xls, .xlsx (Excel)
-.ppt, .pptx (PowerPoint)
-.odt (OpenDocument Text)
-.ods (OpenDocument Spreadsheet)
-.odp (OpenDocument Presentation)
-.rtf (Rich Text Format)
-.pages (Apple Pages)
-.numbers (Apple Numbers)
+**EML2PDF Converter** ist ein vollautomatischer E-Mail‑zu‑PDF‑Konverter für Docker‑Umgebungen, optimiert für **Paperless‑ngx** und andere DMS‑Systeme.
+Er verarbeitet `.eml`‑Dateien inklusive Anhängen und erzeugt **ein einziges, durchsuchbares PDF** pro E-Mail.
 
-🖼️ Images (via PIL/Pillow):
-.png
-.jpg, .jpeg
-.gif
-.bmp
-.tiff
-.webp
+Der Fokus liegt auf:
 
-📋 Already PDF:
-.pdf (will be transferred directly)
+* Stabilität
+* Vollständiger Archivierung
+* Sauberer Darstellung
+* 100 % Offline‑Verarbeitung
 
+---
 
-## Official Images (GitHub Container Registry)
+### Funktionen
 
-| Architecture           | Version 1.01 (stable)               | Latest (rolling)                   | Recommended for                               |
-|------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
-| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Servers, desktops, NAS (Synology, QNAP, TrueNAS) |
-| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+* Konvertiert `.eml` → **PDF**
+* E-Mail‑Header auf Seite 1 (Von, An, CC, BCC, Betreff, Datum)
+* HTML‑ und Text‑Bodies
+* Automatische Zeitzonen‑Normalisierung
+* Jede Anlage wird:
 
-Important: Always use the full tag with architecture suffix!
+  * erkannt
+  * ggf. konvertiert
+  * im PDF eingebettet
+* Vollständige Archivierung
+* Fehlerhafte Dateien landen sicher im Error‑Verzeichnis
 
-## Quick Start (Docker Compose)
+---
 
-```yaml
-version: '3.8'
-services:
-  eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:1.02-x86      # x86 systems
-    # image: ghcr.io/klissner/eml2pdf:1.02-arm    # Raspberry Pi / Apple Silicon
-    container_name: eml2pdf
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Berlin
-      - LOGLEVEL=INFO
-    volumes:
-      - ./eml-import:/input
-      - ./consume:/usr/src/paperless/consume
-      - ./eml-import/archiv:/eml-import/archiv
-      - ./eml-import/error:/eml-import/error
-      - ./config.json:/config.json
+### Unterstützte Anhänge
 
-Start:bash
+#### Direkt konvertiert (LibreOffice headless)
 
-docker-compose up -d
+* **DOC / DOCX / RTF / TXT**
+* **XLS / XLSX / CSV**
+* **PPT / PPTX**
+* **ODT / ODS / ODP**
+* **Pages / Numbers / Keynote**
 
-Local folder structure
+#### Bilder (als PDF-Seiten)
 
-paperless/
-├── docker-compose.yml
-├── config.json
-├── eml-import/           ← drop EML files here
-│   ├── archiv/           ← archived EMLs
-│   └── error/            ← failed files + logs
-├── consume/              ← converted PDFs appear here
-└── eml2pdf/              ← contains Dockerfile, main.py, requirements.txt
+* PNG
+* JPG / JPEG
+* GIF
+* BMP
+* TIFF
+* WEBP
 
-Configuration (config.json)json
+#### Bereits PDF
 
-{
-  "separator_text": "Attachment {num}: {name}",
-  "poll_interval_seconds": 300,
-  "separator_page": "on",
-  "archive_retention_days": 30,
-  "max_logfile_size": 1048576,
-  "max_logfile_backups": 2
-}
+* PDF (wird unverändert übernommen)
 
-What’s new in Version 1.02?
-Full ARM64 support (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
-Clear architecture separation (-x86 / -arm)  
-Proper semantic versioning + stable tags  
-Clean, multi-arch Dockerfile  
+#### Fallback (immer möglich)
 
+* VCF
+* Unbekannte Dateitypen
+* Binärdateien → Hinweis‑PDF
 
-eml2pdf now truly runs everywhere – no compromises.
-Donations & Support: Thank you for your support!  
-PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeContactMichael Klissner  
-https://www.klissner.uk  
-Mail: umschalter-excel-3e@icloud.com
+#### Ignoriert
 
-------------------------------------------------------------------------------------------
+* EML‑Anhänge (Rekursionsschutz)
 
-# eml2pdf Converter – EML → PDF | 100% Paperless-ngx kompatibel
-**Version 1.02 – 25. November 2025**  
-(c) Michael Klissner – https://www.klissner.uk
+---
 
-Konvertiert EML-Dateien (inkl. Anhänge) GoBD-konform in ein einziges, durchsuchbares PDF – perfekt für Paperless-ngx.
+### Verzeichnisstruktur
 
-✅ Direkt unterstützte Formate:
+```
+/input        → Eingehende .eml Dateien
+/consume      → Paperless‑Consume (Windows / Host)
+/app/archiv   → Archivierte E-Mails (Jahr / Monat)
+/app/error    → Fehlerhafte E-Mails + Logfile
+```
 
-📄 Dokumente (via LibreOffice):
-.doc, .docx (Word)
-.xls, .xlsx (Excel)
-.ppt, .pptx (PowerPoint)
-.odt (OpenDocument Text)
-.ods (OpenDocument Spreadsheet)
-.odp (OpenDocument Presentation)
-.rtf (Rich Text Format)
-.pages (Apple Pages)
-.numbers (Apple Numbers)
+---
 
-🖼️ Bilder (via PIL/Pillow):
-.png
-.jpg, .jpeg
-.gif
-.bmp
-.tiff
-.webp
+### Konfiguration
 
-📋 Bereits PDF:
-.pdf (wird direkt übernommen)
+Optional über `/config.json`:
 
-
-## Offizielle Images (GitHub Container Registry)
-
-| Architektur            | Version 1.01 (stabil)               | Aktuell (rolling)                  | Empfohlen für                                 |
-|------------------------|-------------------------------------|-------------------------------------|-----------------------------------------------|
-| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:1.02-x86` | `ghcr.io/klissner/eml2pdf:latest-x86` | Server, Desktop, NAS (Synology, QNAP, TrueNAS) |
-| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:1.02-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
-
-**Wichtig**: Immer den vollen Tag mit Architektur verwenden!
-
-## Schnellstart (Docker Compose)
-
-```yaml
-version: '3.8'
-services:
-  eml2pdf:
-    image: ghcr.io/klissner/eml2pdf:1.02-x86      # ← x86-Systeme
-    # image: ghcr.io/klissner/eml2pdf:1.02-arm    # ← Raspberry Pi / Apple Silicon
-    container_name: eml2pdf
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Berlin
-      - LOGLEVEL=INFO
-    volumes:
-      - ./eml-import:/input
-      - ./consume:/usr/src/paperless/consume
-      - ./eml-import/archiv:/eml-import/archiv
-      - ./eml-import/error:/eml-import/error
-      - ./config.json:/config.json
-
-Starten:bash
-
-docker-compose up -d
-
-Verzeichnisstruktur (lokal)
-
-paperless/
-├── docker-compose.yml
-├── config.json
-├── eml-import/           ← EML-Dateien hier reinlegen
-│   ├── archiv/           ← archivierte EMLs
-│   └── error/            ← fehlerhafte Dateien + Logs
-├── consume/              ← fertige PDFs kommen hier raus
-└── eml2pdf/              ← enthält Dockerfile, main.py, requirements.txt
-
-Konfiguration (config.json)json
-
+```json
 {
   "separator_text": "Anlage {num}: {name}",
   "poll_interval_seconds": 300,
   "separator_page": "on",
-  "archive_retention_days": 30,
-  "max_logfile_size": 1048576,
-  "max_logfile_backups": 2
+  "archive_retention_days": 0
 }
+```
 
-Was ist neu in Version 1.02?
-Vollständige ARM64-Unterstützung (Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton)  
-Klare Trennung der Architekturen (-x86 / -arm)  
-Semantische Versionierung + stabile Tags  
-Multi-arch-fähiges, sauberes Dockerfile  
+---
 
-Jetzt läuft eml2pdf wirklich überall – ohne Kompromisse. Spenden & Unterstützung. Vielen Dank für eure Unterstützung!  
-PayPal → https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW
-Bitcoin / Lightning / Bank → https://www.ksc-llp.uk/donateyoutubeKontaktMichael Klissner  
-https://www.klissner.uk  
-Mail: umschalter-excel-3e@icloud.com
+### Architektur
 
+* Python 3
+* WeasyPrint (HTML → PDF)
+* LibreOffice (Office‑Formate)
+* Pillow (Bilder)
+* pdftoppm (PDF‑Vorschau)
+* Docker‑ready
+
+Unterstützt:
+
+* **x86_64**
+* **ARM64 (aarch64)**
+
+---
+
+### Lizenz & Support
+
+© 2025 - 2026 KSC LLP / Michael Klissner
+[https://www.klissner.uk](https://www.klissner.uk)
+
+Spenden & Support:
+
+* PayPal
+* Bitcoin / Lightning
+
+---
+
+---
+
+## 🇬🇧 English
+
+### Overview
+
+**EML2PDF Converter** is a fully automated email‑to‑PDF converter for Docker environments, optimized for **Paperless‑ngx** and other DMS systems.
+
+Each `.eml` file (including attachments) is converted into **one searchable PDF**.
+
+Designed for:
+
+* Stability
+* Long‑term archiving
+* Clean layout
+* 100 % offline processing
+
+---
+
+### Features
+
+* Converts `.eml` → **PDF**
+* Email headers on page 1 (From, To, CC, BCC, Subject, Date)
+* HTML and plain‑text bodies
+* Automatic timezone normalization
+* Attachments are:
+
+  * detected
+  * converted if needed
+  * embedded into the PDF
+* Automatic archiving
+* Failed files are safely moved to the error folder
+
+---
+
+### Supported Attachments
+
+#### Native conversion (LibreOffice headless)
+
+* **DOC / DOCX / RTF / TXT**
+* **XLS / XLSX / CSV**
+* **PPT / PPTX**
+* **ODT / ODS / ODP**
+* **Pages / Numbers / Keynote**
+
+#### Images (as PDF pages)
+
+* PNG
+* JPG / JPEG
+* GIF
+* BMP
+* TIFF
+* WEBP
+
+#### Already PDF
+
+* PDF (kept unchanged)
+
+#### Fallback (always possible)
+
+* VCF
+* Unknown file types
+* Binary files → info PDF
+
+#### Ignored
+
+* EML attachments (recursion protection)
+
+---
+
+### Directory Structure
+
+```
+/input        → Incoming .eml files
+/consume      → Paperless consume (host / Windows)
+/usr/src/paperless/consume → Paperless consume (container)
+/app/archiv   → Archived emails (year / month)
+/app/error    → Failed emails + logfile
+```
+
+---
+
+### Configuration
+
+Optional via `/config.json`:
+
+```json
+{
+  "separator_text": "Attachment {num}: {name}",
+  "poll_interval_seconds": 300,
+  "separator_page": "on",
+  "archive_retention_days": 0
+}
+```
+
+---
+
+### Architecture
+
+* Python 3
+* WeasyPrint (HTML → PDF)
+* LibreOffice (Office formats)
+* Pillow (images)
+* pdftoppm (PDF preview)
+* Docker‑ready
+
+Supported platforms:
+
+* **x86_64**
+* **ARM64 (aarch64)**
+
+---
+
+### License & Support
+
+© 2025 - 2026 KSC LLP / Michael Klissner
+[https://www.klissner.uk](https://www.klissner.uk)
+
+Donations & support:
+
+* PayPal
+* Bitcoin / Lightning
+
+---
+
+---
+
+---
+
+## 🇬🇧 Donations & Support
+
+Thank you very much for your support!
+
+* **PayPal** → [https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW](https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW)
+* **Bitcoin / Lightning / Bank** → [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)
+
+**Contact:** Michael Klissner
+Web: [https://www.klissner.uk](https://www.klissner.uk)
+Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
+
+---
+
+## 🇩🇪 Spenden & Unterstützung
+
+Vielen Dank für eure Unterstützung!
+
+* **PayPal** → [https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW](https://www.paypal.com/donate?hosted_button_id=G8CZWPDCM3SNW)
+* **Bitcoin / Lightning / Bank** → [https://www.ksc-llp.uk/donateyoutube](https://www.ksc-llp.uk/donateyoutube)
+
+**Kontakt:** Michael Klissner
+Web: [https://www.klissner.uk](https://www.klissner.uk)
+Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
