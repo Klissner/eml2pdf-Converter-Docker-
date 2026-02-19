@@ -71,7 +71,7 @@ Der Fokus liegt auf:
 
 ```
 /input        → Eingehende .eml Dateien
-/consume      → Paperless‑Consume (Windows / Host)
+/consume      → Ausgabeverzeichnis oder auch z.B. Paperless consume Verzeichnis
 /app/archiv   → Archivierte E-Mails (Jahr / Monat)
 /app/error    → Fehlerhafte E-Mails + Logfile
 ```
@@ -126,7 +126,7 @@ Unterstützt:
 
 © 2025 - 2026 KSC LLP / Michael Klissner
 [https://www.klissner.uk](https://www.klissner.uk)
-
+https://www.klissner.uk/de/eml2pdf-offizielle-web-seite/ 
 
 ## Spenden & Unterstützung
 
@@ -215,8 +215,7 @@ Designed for:
 
 ```
 /input        → Incoming .eml files
-/consume      → Paperless consume (host / Windows)
-/usr/src/paperless/consume → Paperless consume (container)
+/consume      → Output folder, e.g., Paperless consume directory
 /app/archiv   → Archived emails (year / month)
 /app/error    → Failed emails + logfile
 ```
@@ -245,6 +244,7 @@ Optional via `/config.json`:
   "separator_page": "on",
   "archive_retention_days": 730,
   "max_logfile_size": 1048576,
+
   "max_logfile_backups": 3,
 }
 ```
@@ -271,6 +271,7 @@ Supported platforms:
 
 © 2025 - 2026 KSC LLP / Michael Klissner
 [https://www.klissner.uk](https://www.klissner.uk)
+https://www.klissner.uk/de/eml2pdf-offizielle-web-seite/ 
 
 
 ## Donations & Support
