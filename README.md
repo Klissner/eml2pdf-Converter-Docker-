@@ -2,7 +2,7 @@
 
 ## Release v2.01 – Bugfix
 
-** Datum und Zeit werden jetzt aus dem Email Header verwendet (GoBD konform) Bugfix
+Datum und Zeit werden jetzt aus dem Email Header verwendet (GoBD konform) Bugfix
 
 ---
 
@@ -162,7 +162,7 @@ Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
 
 ## Release v2.01 - Bugfix
 
-** Date and time are now taken from the email header (GoBD compliant) Bug fix
+Date and time are now taken from the email header (GoBD compliant) Bug fix
 
 ---
 
@@ -303,6 +303,7 @@ Thank you very much for your support!
 **Contact:** Michael Klissner
 Web: [https://www.klissner.uk](https://www.klissner.uk)
 Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
+
 
 
 
