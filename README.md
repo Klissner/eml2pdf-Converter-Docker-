@@ -1,6 +1,21 @@
-# EML2PDF Converter
+# 🇩🇪 Deutsch
 
-## 🇩🇪 Deutsch
+## Release v2.01 – Bugfix
+
+** Datum und Zeit werden jetzt aus dem Email Header verwendet (GoBD konform) Bugfix
+
+---
+
+## Offizielle Images (GitHub Container Registry)
+
+| Architektur            | Version 2.01 (stabil)               | Aktuell (rolling)                      | Empfohlen für                                       |
+|------------------------|-------------------------------------|----------------------------------------|-----------------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:2.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86`  | Server, Desktop, NAS (Synology, QNAP, TrueNAS)      |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:2.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+
+**Wichtig**: Immer den vollen Tag mit Architektur verwenden!
+
+# EML2PDF Converter
 
 ### Übersicht
 
@@ -143,7 +158,22 @@ Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
 
 ---
 
-## 🇬🇧 English
+# 🇬🇧 English
+
+## Release v2.01 - Bugfix
+
+** Date and time are now taken from the email header (GoBD compliant) Bug fix
+
+---
+
+## Official images (GitHub Container Registry)
+
+| Architecture           | Version 2.01 (stabil)               | Current (rolling)                      | Recommended for.                                    |
+|------------------------|-------------------------------------|----------------------------------------|-----------------------------------------------------|
+| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:2.01-x86` | `ghcr.io/klissner/eml2pdf:latest-x86`  | Server, Desktop, NAS (Synology, QNAP, TrueNAS)      |
+| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:2.01-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
+
+**Important**: Always use the full day for architecture!
 
 ### Overview
 
@@ -222,17 +252,6 @@ Designed for:
 
 ---
 
-## Official images (GitHub Container Registry)
-
-| Architecture           | Version 2.00 (stabil)               | Current (rolling)                      | Recommended for.                                    |
-|------------------------|-------------------------------------|----------------------------------------|-----------------------------------------------------|
-| **x86_64** (Intel/AMD) | `ghcr.io/klissner/eml2pdf:2.00-x86` | `ghcr.io/klissner/eml2pdf:latest-x86`  | Server, Desktop, NAS (Synology, QNAP, TrueNAS)      |
-| **ARM64** (aarch64)    | `ghcr.io/klissner/eml2pdf:2.00-arm` | `ghcr.io/klissner/eml2pdf:latest-arm`  | Raspberry Pi 4/5, Apple Silicon M1/M2, AWS Graviton |
-
-**Important**: Always use the full day for architecture!
-
----
-
 ### Configuration
 
 Optional via `/config.json`:
@@ -284,6 +303,7 @@ Thank you very much for your support!
 **Contact:** Michael Klissner
 Web: [https://www.klissner.uk](https://www.klissner.uk)
 Mail: [umschalter-excel-3e@icloud.com](mailto:umschalter-excel-3e@icloud.com)
+
 
 
 
